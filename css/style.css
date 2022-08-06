@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 
 :root{
-    --orange:#ff7800;
+    --red:#e60d1ffa;
     /* #ff7800 */
     --black:#130f40;
     --light-color:#666;
@@ -45,7 +45,7 @@ section{
 }
 
 .heading span{
-    background: var(--orange);
+    background: var(--red);
     color:#fff;
     display: inline-block;
     padding:.5rem 3rem;
@@ -65,7 +65,7 @@ section{
 }
 
 .btn:hover{
-    background: var(--orange);
+    background: var(--red);
     color:#fff;
 }
 
@@ -88,7 +88,7 @@ section{
 }
 
 .header .logo i{
-    color:var(--orange);
+    color:var(--red);
 }
 
 .header .navbar a{
@@ -98,7 +98,7 @@ section{
 }
 
 .header .navbar a:hover{
-    color:var(--orange);
+    color:var(--red);
 }
 
 .header .icons div{
@@ -115,7 +115,7 @@ section{
 }
 
 .header .icons div:hover{
-    background: var(--orange);
+    background: var(--red);
     color:#fff;
 }
 
@@ -159,7 +159,7 @@ section{
 }
 
 .header .search-form label:hover{
-    color:var(--orange);
+    color:var(--red);
 }
 
 .header .shopping-cart{
@@ -199,7 +199,7 @@ section{
 }
 
 .header .shopping-cart .box .fa-trash:hover{
-    color:var(--orange);
+    color:var(--red);
 }
 
 .header .shopping-cart .box .content h3{
@@ -278,7 +278,7 @@ section{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url(../image/banner-bg.webp) no-repeat;
+    background: url(../image/organi.jpg) no-repeat;
     background-position: center;
     background-size: cover;
     padding-top: 17rem;
@@ -296,11 +296,11 @@ section{
 }
 
 .home .content h3 span{
-    color:var(--orange);
+    color:var(--red);
 }
 
 .home .content p{
-    color:var(--light-color);
+    color:var(--bold-color);
     font-size: 1.7rem;
     padding:1rem 0;
     line-height: 1.8;
