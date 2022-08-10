@@ -385,7 +385,7 @@ section{
 
 .products .product-slider .box .stars i{
     font-size: 1.7rem;
-    color:var(--orange);
+    color:var(--red);
     padding:.5rem 0;
 }
 
