@@ -468,7 +468,7 @@ section{
 }
 
 .review .review-slider .box .stars i{
-    color:var(--orange);
+    color:var(--red);
     font-size: 1.7rem;
 }
 
