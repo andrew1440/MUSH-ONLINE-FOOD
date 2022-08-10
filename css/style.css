@@ -549,7 +549,7 @@ section{
 }
 
 .footer .box-container .box h3 i{
-    color:var(--orange);
+    color:var(--red);
 }
 
 .footer .box-container .box .links{
@@ -560,7 +560,7 @@ section{
 }
 
 .footer .box-container .box .links i{
-    color:var(--orange);
+    color:var(--red);
     padding-right: .5rem;
 }
 
@@ -589,7 +589,7 @@ section{
 }
 
 .footer .box-container .box .share a:hover{
-    background: var(--orange);
+    background: var(--red);
     color: #fff;
 }
 
@@ -621,7 +621,7 @@ section{
 }
 
 .footer .credit span{
-    color:var(--orange);
+    color:var(--red);
 }
 
 
