@@ -230,6 +230,17 @@ section{
     margin:1rem;
 }
 
+.header .shopping-cart .empty-cart{
+    text-align: center;
+    padding: 2rem;
+    color: var(--light-color);
+}
+
+.header .shopping-cart .empty-cart p{
+    margin: 0.5rem 0;
+    font-size: 1.4rem;
+}
+
 .header .login-form{
     position: absolute;
     top:110%; right:-110%;
@@ -272,6 +283,78 @@ section{
 .header .login-form p a{
     color:var(--orange);
     text-decoration: underline;
+}
+
+.header .register-form{
+    position: absolute;
+    top:110%; right:-110%;
+    width:35rem;
+    box-shadow: var(--box-shadow);
+    padding:2rem;
+    border-radius: .5rem;
+    background: #fff;
+    text-align: center;
+}
+
+.header .register-form.active{
+    right:2rem;
+    transition: .4s linear;
+}
+
+.header .register-form h3{
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    color: var(--black);
+}
+
+.header .register-form .box{
+    width: 100%;
+    margin:.7rem 0;
+    background:#eee;
+    border-radius: .5rem;
+    padding:1rem;
+    font-size: 1.6rem;
+    color:var(--black);
+    text-transform: none;
+}
+
+.header .register-form p{
+    font-size: 1.4rem;
+    padding:.5rem 0;
+    color:var(--light-color);
+}
+
+.header .register-form p a{
+    color:var(--orange);
+    text-decoration: underline;
+}
+
+.header .user-profile{
+    position: absolute;
+    top:110%; right:-110%;
+    width:35rem;
+    box-shadow: var(--box-shadow);
+    padding:2rem;
+    border-radius: .5rem;
+    background: #fff;
+    text-align: center;
+}
+
+.header .user-profile.active{
+    right:2rem;
+    transition: .4s linear;
+}
+
+.header .user-profile h3{
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    color: var(--black);
+}
+
+.header .user-profile p{
+    font-size: 1.4rem;
+    padding:.5rem 0;
+    color:var(--light-color);
 }
 
 .home{
