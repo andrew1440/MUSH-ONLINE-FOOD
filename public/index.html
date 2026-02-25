@@ -5,381 +5,636 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mush- Food Website</title>
+    <title>MUSH Market — Fresh Groceries Delivered Fast in Nairobi</title>
+    <meta name="description"
+        content="MUSH Market delivers fresh groceries, fruits, vegetables, meat and dairy to your door in Nairobi. Order now and get it delivered fast!">
 
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
-    <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- custom css file link  -->
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body>
 
-    <!-- header section starts  -->
+    <!-- ========= TOAST CONTAINER ========= -->
+    <div id="toast-container" class="toast-container"></div>
 
-    <header class="header">
+    <!-- ========= OVERLAY ========= -->
+    <div class="overlay" id="overlay"></div>
 
-        <a href="#" class="logo"> <span>Mush</span>Market </a>
+    <!-- ========= HEADER ========= -->
+    <header class="header" id="header">
+        <div class="header-inner">
 
-        <form action="" class="search-form">
-            <input type="search" id="search-box" placeholder="Search for products, brands and categories">
-            <label for="search-box" class="fas fa-search"></label>
-        </form>
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <div class="logo-icon">🥦</div>
+                <span class="logo-text">MUSH<span class="logo-accent">Market</span></span>
+            </a>
 
-        <div class="icons">
-            <div class="fas fa-search" id="search-btn" style="display: none;"></div>
-            <div class="fas fa-user" id="login-btn"></div>
-            <div class="fas fa-user-circle" id="profile-btn" style="display: none;"></div>
-            <div class="fas fa-heart" id="wishlist-btn"><span>0</span></div>
-            <div class="fas fa-shopping-cart" id="cart-btn"><span>0</span></div>
-            <div class="fas fa-bars" id="menu-btn"></div>
-        </div>
-
-        <!-- Dropdowns remain same but with new styling via CSS -->
-        <div class="shopping-cart">
-            <div id="cart-empty" class="empty-cart">
-                <p>Your cart is empty</p>
-                <p>Please login to add items to your cart</p>
+            <!-- Location -->
+            <div class="location-pill">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Nairobi, KE</span>
+                <i class="fas fa-chevron-down"></i>
             </div>
-            <div id="cart-items" class="cart-items" style="display: none;"></div>
-            <div id="cart-total" class="total" style="display: none;">Total: KSh 0/-</div>
-            <a href="#" id="checkout-btn" class="btn" style="display: none; width: 100%;">checkout</a>
+
+            <!-- Search -->
+            <form class="search-form" id="search-form">
+                <i class="fas fa-search search-icon"></i>
+                <input type="search" id="search-box" placeholder="Search groceries, fruits, meat..." autocomplete="off">
+                <button type="submit" class="search-btn">Search</button>
+            </form>
+
+            <!-- Nav Actions -->
+            <nav class="header-actions">
+                <button class="action-btn" id="wishlist-btn" title="Wishlist">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge" id="wishlist-count">0</span>
+                </button>
+                <button class="action-btn" id="login-btn" title="Login">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="action-btn" id="profile-btn" title="My Account" style="display:none;">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <button class="cart-btn" id="cart-btn">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span>Cart</span>
+                    <span class="badge" id="cart-count">0</span>
+                </button>
+                <button class="menu-toggle" id="menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
         </div>
 
-        <form action="" class="login-form" id="login-form">
-            <h3>login</h3>
-            <input type="email" name="email" placeholder="Email Address" class="box" required>
-            <input type="password" name="password" placeholder="Password" class="box" required>
-            <p><a href="#">Forgot Password?</a></p>
-            <input type="submit" value="LOGIN" class="btn" style="width: 100%;">
-            <p>New to Mush? <a href="#" id="register-link">Create Account</a></p>
-        </form>
+        <!-- Mobile Nav -->
+        <div class="mobile-nav" id="mobile-nav">
+            <a href="#hero">Home</a>
+            <a href="#categories">Categories</a>
+            <a href="#products">Products</a>
+            <a href="#reviews">Reviews</a>
+        </div>
 
-        <form action="" class="register-form" id="register-form">
-            <h3>register</h3>
-            <input type="text" name="name" placeholder="Full Name" class="box">
-            <input type="email" name="email" placeholder="Email Address" class="box" required>
-            <input type="password" name="password" placeholder="Password" class="box" required>
-            <input type="password" name="confirm-password" placeholder="Confirm Password" class="box" required>
-            <input type="submit" value="REGISTER" class="btn" style="width: 100%;">
-            <p>Already have an account? <a href="#" id="login-link">Login</a></p>
-        </form>
+        <!-- ======= DROPDOWNS ======= -->
 
-        <div class="user-profile" id="user-profile">
-            <h3 id="profile-name">Welcome!</h3>
-            <p id="profile-email"></p>
-            <a href="#" onclick="logout()" class="btn" style="width: 100%;">Logout</a>
+        <!-- Cart Dropdown -->
+        <div class="dropdown cart-dropdown" id="cart-dropdown">
+            <div class="dropdown-header">
+                <h3><i class="fas fa-shopping-basket"></i> My Cart</h3>
+                <button class="close-btn" data-close="cart-dropdown"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="cart-empty" class="empty-state">
+                <div class="empty-icon">🛒</div>
+                <p>Your cart is empty</p>
+                <small>Add items to get started</small>
+            </div>
+            <div id="cart-items" style="display:none;"></div>
+            <div class="cart-footer" id="cart-footer" style="display:none;">
+                <div class="cart-total-row">
+                    <span>Subtotal</span>
+                    <span id="cart-total">KSh 0</span>
+                </div>
+                <div class="cart-total-row delivery-fee-row">
+                    <span>Delivery</span>
+                    <span class="free-tag">FREE</span>
+                </div>
+                <button class="checkout-btn-full" id="checkout-btn">
+                    <i class="fas fa-lock"></i> Proceed to Checkout
+                </button>
+            </div>
+        </div>
+
+        <!-- Login Dropdown -->
+        <div class="dropdown auth-dropdown" id="login-dropdown">
+            <div class="dropdown-header">
+                <h3>Welcome Back 👋</h3>
+                <button class="close-btn" data-close="login-dropdown"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="login-form">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <a href="#" class="forgot-link">Forgot Password?</a>
+                <button type="submit" class="btn-primary full-width">Sign In</button>
+                <p class="switch-auth">New to MUSH? <a href="#" id="register-link">Create Account</a></p>
+            </form>
+        </div>
+
+        <!-- Register Dropdown -->
+        <div class="dropdown auth-dropdown" id="register-dropdown">
+            <div class="dropdown-header">
+                <h3>Join MUSH 🌿</h3>
+                <button class="close-btn" data-close="register-dropdown"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="register-form">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="name" placeholder="Full Name">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="confirm-password" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit" class="btn-primary full-width">Create Account</button>
+                <p class="switch-auth">Already a member? <a href="#" id="login-link">Sign In</a></p>
+            </form>
+        </div>
+
+        <!-- Profile Dropdown -->
+        <div class="dropdown profile-dropdown" id="profile-dropdown">
+            <div class="dropdown-header">
+                <h3 id="profile-name">My Account</h3>
+                <button class="close-btn" data-close="profile-dropdown"><i class="fas fa-times"></i></button>
+            </div>
+            <p id="profile-email" class="profile-email"></p>
+            <div class="profile-menu">
+                <button class="profile-menu-item" id="order-history-btn">
+                    <i class="fas fa-receipt"></i> My Orders
+                </button>
+                <button class="profile-menu-item" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Sign Out
+                </button>
+            </div>
+        </div>
+
+        <!-- Order History Dropdown -->
+        <div class="dropdown order-dropdown" id="order-dropdown">
+            <div class="dropdown-header">
+                <h3><i class="fas fa-receipt"></i> Order History</h3>
+                <button class="close-btn" data-close="order-dropdown"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="orders-list"></div>
         </div>
 
     </header>
+    <!-- ========= END HEADER ========= -->
 
-    <!-- header section ends -->
 
-    <!-- hero section starts -->
-
-    <div class="hero-container">
-        <aside class="category-sidebar">
-            <a href="#"><i class="fas fa-apple-alt"></i> Supermarket</a>
-            <a href="#"><i class="fas fa-mobile-alt"></i> Phones & Tablets</a>
-            <a href="#"><i class="fas fa-laptop"></i> Electronics</a>
-            <a href="#"><i class="fas fa-home"></i> Home & Office</a>
-            <a href="#"><i class="fas fa-tshirt"></i> Fashion</a>
-            <a href="#"><i class="fas fa-baby"></i> Baby Products</a>
-            <a href="#"><i class="fas fa-dumbbell"></i> Sporting Goods</a>
-            <a href="#"><i class="fas fa-ellipsis-h"></i> Other Categories</a>
-        </aside>
-
-        <main class="hero-slider swiper">
+    <!-- ========= HERO SECTION ========= -->
+    <section class="hero" id="hero">
+        <!-- Slider -->
+        <div class="hero-swiper swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="image/blog-1.jpg" alt="Promo 1"></div>
-                <div class="swiper-slide"><img src="image/blog-2.jpg" alt="Promo 2"></div>
+                <div class="swiper-slide hero-slide slide-1">
+                    <div class="slide-content">
+                        <span class="slide-tag">🌿 100% Fresh & Organic</span>
+                        <h1>Farm-Fresh <br><span>Groceries</span> Delivered<br>To Your Door</h1>
+                        <p>Order fresh vegetables, fruits, meat & dairy. Get delivery in under 45 minutes across
+                            Nairobi.</p>
+                        <div class="slide-actions">
+                            <a href="#products" class="btn-primary">
+                                <i class="fas fa-shopping-basket"></i> Shop Now
+                            </a>
+                            <a href="#categories" class="btn-outline">
+                                Browse Categories <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="slide-stats">
+                            <div class="stat"><span class="stat-num" data-target="2000">0</span><small>Happy
+                                    Customers</small></div>
+                            <div class="stat"><span class="stat-num" data-target="150">0</span><small>Products</small>
+                            </div>
+                            <div class="stat"><span class="stat-num" data-target="45">0</span><small>Min
+                                    Delivery</small></div>
+                        </div>
+                    </div>
+                    <div class="slide-image">
+                        <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=700&q=80"
+                            alt="Fresh Groceries" loading="lazy">
+                    </div>
+                </div>
+                <div class="swiper-slide hero-slide slide-2">
+                    <div class="slide-content">
+                        <span class="slide-tag">🔥 Flash Deal — Today Only</span>
+                        <h1>Fresh <span>Fruits</span><br>Up to 40% Off<br>This Weekend</h1>
+                        <p>Pixie oranges, ripe avocados, green lemons — all at unbeatable prices. Limited stock!</p>
+                        <div class="slide-actions">
+                            <a href="#flash" class="btn-primary">
+                                <i class="fas fa-bolt"></i> Grab the Deal
+                            </a>
+                        </div>
+                    </div>
+                    <div class="slide-image">
+                        <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?w=700&q=80"
+                            alt="Fresh Fruits Sale" loading="lazy">
+                    </div>
+                </div>
+                <div class="swiper-slide hero-slide slide-3">
+                    <div class="slide-content">
+                        <span class="slide-tag">🥩 Premium Quality</span>
+                        <h1>Grade-A <span>Fresh Meat</span><br>Straight From<br>The Farm</h1>
+                        <p>Beef, chicken, lamb — sourced fresh daily. Vacuum sealed for maximum freshness.</p>
+                        <div class="slide-actions">
+                            <a href="#" class="btn-primary" onclick="loadCategoryProducts('meat')">
+                                <i class="fas fa-drumstick-bite"></i> Shop Meat
+                            </a>
+                        </div>
+                    </div>
+                    <div class="slide-image">
+                        <img src="https://images.unsplash.com/photo-1550317138-10000687a72b?w=700&q=80" alt="Fresh Meat"
+                            loading="lazy">
+                    </div>
+                </div>
             </div>
-        </main>
+            <div class="swiper-pagination hero-pagination"></div>
+        </div>
+    </section>
+    <!-- ========= END HERO ========= -->
 
-        <aside class="promo-banners">
-            <div class="banner"><img src="image/product-5.png" alt="Promo" style="background: #fdf3e8;"></div>
-            <div class="banner"><img src="image/product-6.png" alt="Promo" style="background: #eef9ee;"></div>
-        </aside>
+
+    <!-- ========= TRUST BAR ========= -->
+    <div class="trust-bar">
+        <div class="trust-item">
+            <i class="fas fa-truck-fast"></i>
+            <div>
+                <strong>Free Delivery</strong>
+                <small>On orders over KSh 500</small>
+            </div>
+        </div>
+        <div class="trust-item">
+            <i class="fas fa-leaf"></i>
+            <div>
+                <strong>100% Fresh</strong>
+                <small>Farm to door quality</small>
+            </div>
+        </div>
+        <div class="trust-item">
+            <i class="fas fa-clock"></i>
+            <div>
+                <strong>45-min Delivery</strong>
+                <small>Fast across Nairobi</small>
+            </div>
+        </div>
+        <div class="trust-item">
+            <i class="fas fa-shield-halved"></i>
+            <div>
+                <strong>Secure Payment</strong>
+                <small>M-Pesa & Cards accepted</small>
+            </div>
+        </div>
     </div>
+    <!-- ========= END TRUST BAR ========= -->
 
-    <!-- hero section ends -->
 
-    <!-- flash sales section starts -->
-
-    <section class="flash-sales" id="flash-sales">
-        <div class="flash-header">
-            <div style="display: flex; align-items: center; gap: 1rem;">
-                <i class="fas fa-bolt"></i>
-                <h2>Flash Sales</h2>
-            </div>
-            <div class="timer">
-                Time Left: <span id="hours">00</span>h : <span id="minutes">00</span>m : <span id="seconds">00</span>s
-            </div>
-            <a href="#" style="color: white; font-size: 1.4rem;">SEE ALL ></a>
+    <!-- ========= CATEGORY PILLS ========= -->
+    <section class="categories-section" id="categories">
+        <div class="section-header">
+            <h2 class="section-title">Shop by <span>Category</span></h2>
+            <p class="section-subtitle">Discover our wide range of fresh products</p>
         </div>
-        <div class="flash-grid" id="flash-products">
-            <!-- Flash products will be injected by script -->
-        </div>
-    </section>
-
-    <!-- flash sales section ends -->
-
-    <!-- products section starts  -->
-
-    <section class="products" id="products">
-
-        <h1 class="heading"> recommended <span>for you</span> </h1>
-
-        <div class="product-slider swiper">
-            <div class="swiper-wrapper" id="recommended-products">
-                <!-- Dynamic products -->
+        <div class="categories-grid">
+            <div class="category-card cat-all active" onclick="filterCategory('all',this)">
+                <div class="cat-icon">🛒</div>
+                <h3>All Items</h3>
+                <p>Everything fresh</p>
             </div>
-        </div>
-
-    </section>
-
-    <!-- products section ends -->
-
-    <!-- categories section starts  -->
-
-    <section class="categories" id="categories">
-
-        <h1 class="heading"> shop by <span>category</span> </h1>
-
-        <div class="box-container">
-
-            <div class="box">
-                <img src="image/cat-1.png" alt="">
+            <div class="category-card cat-fruits" onclick="filterCategory('fruits',this)">
+                <div class="cat-icon">🍊</div>
+                <h3>Fruits</h3>
+                <p>Seasonal & tropical</p>
+            </div>
+            <div class="category-card cat-vegetables" onclick="filterCategory('vegetables',this)">
+                <div class="cat-icon">🥦</div>
                 <h3>Vegetables</h3>
-                <p>up to 45% off</p>
-                <a href="#" class="btn">shop now</a>
+                <p>Farm-fresh daily</p>
             </div>
-
-            <div class="box">
-                <img src="image/cat-2.png" alt="">
-                <h3>Fresh Fruits</h3>
-                <p>up to 45% off</p>
-                <a href="#" class="btn">shop now</a>
+            <div class="category-card cat-meat" onclick="filterCategory('meat',this)">
+                <div class="cat-icon">🥩</div>
+                <h3>Meat</h3>
+                <p>Premium cuts</p>
             </div>
-
-            <div class="box">
-                <img src="image/cat-3.png" alt="">
-                <h3>Dairy Products</h3>
-                <p>up to 45% off</p>
-                <a href="#" class="btn">shop now</a>
+            <div class="category-card cat-dairy" onclick="filterCategory('dairy',this)">
+                <div class="cat-icon">🥛</div>
+                <h3>Dairy</h3>
+                <p>Milk, cheese & more</p>
             </div>
-
-            <div class="box">
-                <img src="image/cat-4.png" alt="">
-                <h3>Fresh Meat</h3>
-                <p>up to 45% off</p>
-                <a href="#" class="btn">shop now</a>
-            </div>
-
         </div>
-
     </section>
+    <!-- ========= END CATEGORIES ========= -->
 
-    <!-- categories section ends -->
 
-    <!-- review section starts  -->
+    <!-- ========= PROMO STRIP ========= -->
+    <div class="promo-strip">
+        <div class="promo-card promo-orange">
+            <div class="promo-text">
+                <span class="promo-tag">New Users</span>
+                <h3>Get 20% Off <br>Your First Order</h3>
+                <a href="#" class="promo-link">Use code: <strong>MUSH20</strong></a>
+            </div>
+            <div class="promo-emoji">🎉</div>
+        </div>
+        <div class="promo-card promo-teal">
+            <div class="promo-text">
+                <span class="promo-tag">Weekend Special</span>
+                <h3>Free Delivery<br>All Weekend</h3>
+                <a href="#" class="promo-link">No minimum order required →</a>
+            </div>
+            <div class="promo-emoji">🚀</div>
+        </div>
+        <div class="promo-card promo-green">
+            <div class="promo-text">
+                <span class="promo-tag">Farmers Market</span>
+                <h3>Organic Produce<br>Just Arrived</h3>
+                <a href="#" class="promo-link" onclick="filterCategory('vegetables',null)">Shop now →</a>
+            </div>
+            <div class="promo-emoji">🌱</div>
+        </div>
+    </div>
+    <!-- ========= END PROMO STRIP ========= -->
 
-    <section class="review" id="review">
 
-        <h1 class="heading"> customer's <span>review</span> </h1>
+    <!-- ========= FLASH SALES ========= -->
+    <section class="flash-section" id="flash">
+        <div class="flash-header">
+            <div class="flash-title">
+                <span class="flash-badge"><i class="fas fa-bolt"></i> Flash Sale</span>
+                <h2>Deals of the Day</h2>
+            </div>
+            <div class="flash-timer">
+                <span class="timer-label">Ends in:</span>
+                <div class="timer-block"><span id="hours">02</span><small>hrs</small></div>
+                <div class="timer-sep">:</div>
+                <div class="timer-block"><span id="minutes">45</span><small>min</small></div>
+                <div class="timer-sep">:</div>
+                <div class="timer-block"><span id="seconds">00</span><small>sec</small></div>
+            </div>
+        </div>
+        <div class="products-row" id="flash-products">
+            <!-- injected by JS -->
+        </div>
+    </section>
+    <!-- ========= END FLASH SALES ========= -->
 
-        <div class="swiper review-slider">
 
+    <!-- ========= PRODUCTS SECTION ========= -->
+    <section class="products-section" id="products">
+        <div class="section-header">
+            <h2 class="section-title" id="products-heading">Recommended <span>For You</span></h2>
+            <div class="view-controls">
+                <button class="view-btn grid-view-btn active" id="grid-view-btn" title="Grid view"><i
+                        class="fas fa-th"></i></button>
+                <button class="view-btn list-view-btn" id="list-view-btn" title="List view"><i
+                        class="fas fa-list"></i></button>
+            </div>
+        </div>
+        <div class="products-grid" id="products-grid">
+            <!-- injected by JS -->
+        </div>
+        <div class="load-more-wrap" id="load-more-wrap" style="display:none;">
+            <button class="btn-outline load-more-btn" id="load-more-btn">Load More Products</button>
+        </div>
+    </section>
+    <!-- ========= END PRODUCTS ========= -->
+
+
+    <!-- ========= HOW IT WORKS ========= -->
+    <section class="how-it-works">
+        <div class="section-header center">
+            <h2 class="section-title">How It <span>Works</span></h2>
+            <p class="section-subtitle">Order fresh groceries in 3 simple steps</p>
+        </div>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num">01</div>
+                <div class="step-icon">🔍</div>
+                <h3>Browse & Choose</h3>
+                <p>Explore hundreds of fresh products from our curated marketplace. Filter by category or search what
+                    you need.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">02</div>
+                <div class="step-icon">🛒</div>
+                <h3>Add to Cart</h3>
+                <p>Add your favorite items to cart. See real-time totals, delivery fees, and estimated arrival time.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">03</div>
+                <div class="step-icon">🚀</div>
+                <h3>Fast Delivery</h3>
+                <p>We pick, pack, and deliver your order in under 45 minutes, fresh and ready to use.</p>
+            </div>
+        </div>
+    </section>
+    <!-- ========= END HOW IT WORKS ========= -->
+
+
+    <!-- ========= TESTIMONIALS ========= -->
+    <section class="reviews-section" id="reviews">
+        <div class="section-header center">
+            <h2 class="section-title">What Customers <span>Say</span></h2>
+            <p class="section-subtitle">Over 2,000 happy customers across Nairobi</p>
+        </div>
+        <div class="reviews-swiper swiper">
             <div class="swiper-wrapper">
-
-                <div class="swiper-slide box">
-                    <img src="image/Pic1.jpg" alt="">
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde sunt fugiat dolore ipsum id est
-                        maxime ad tempore quasi tenetur.</p>
-                    <h3>john deo</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
+                <div class="swiper-slide review-card">
+                    <div class="review-quote">"</div>
+                    <p class="review-text">MUSH Market has completely changed how I shop for groceries. The produce is
+                        always fresh, and delivery is unbelievably fast!</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar" style="background: linear-gradient(135deg, #667eea, #764ba2);">AO
+                        </div>
+                        <div>
+                            <strong>Amina Odongo</strong>
+                            <small>Westlands, Nairobi</small>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                 </div>
-
-                <div class="swiper-slide box">
-                    <img src="image/Pic2.jpg" alt="">
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde sunt fugiat dolore ipsum id est
-                        maxime ad tempore quasi tenetur.</p>
-                    <h3>john deo</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
+                <div class="swiper-slide review-card">
+                    <div class="review-quote">"</div>
+                    <p class="review-text">The meat quality is exceptional—fresh cuts daily with great consistency. I've
+                        stopped going to the supermarket for meat entirely!</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar" style="background: linear-gradient(135deg, #f093fb, #f5576c);">MF
+                        </div>
+                        <div>
+                            <strong>Monicah Fisher</strong>
+                            <small>Karen, Nairobi</small>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                     </div>
                 </div>
-
-                <div class="swiper-slide box">
-                    <img src="image/Pic3.jpg" alt="">
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde sunt fugiat dolore ipsum id est
-                        maxime ad tempore quasi tenetur.</p>
-                    <h3>john deo</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
+                <div class="swiper-slide review-card">
+                    <div class="review-quote">"</div>
+                    <p class="review-text">Prices are unbeatable and the app makes it so easy to reorder my weekly
+                        groceries. The flash deals are always a bonus!</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">JK
+                        </div>
+                        <div>
+                            <strong>James Kariuki</strong>
+                            <small>Kilimani, Nairobi</small>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                 </div>
-
-                <div class="swiper-slide box">
-                    <img src="image/pic-4.png" alt="">
-                    <p>Overall things have been great with the system. Using it has tremendously increased the sales."
-                    </p>
-                    <h3>Monicah fisher</h3>
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
+                <div class="swiper-slide review-card">
+                    <div class="review-quote">"</div>
+                    <p class="review-text">The organic vegetables are a game changer! I know exactly where my food comes
+                        from and can always trust the freshness guarantee.</p>
+                    <div class="reviewer">
+                        <div class="reviewer-avatar" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">SW
+                        </div>
+                        <div>
+                            <strong>Sarah Wanjiku</strong>
+                            <small>Lavington, Nairobi</small>
+                        </div>
+                    </div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
                 </div>
-
             </div>
-
+            <div class="swiper-pagination reviews-pagination"></div>
         </div>
-
     </section>
+    <!-- ========= END TESTIMONIALS ========= -->
 
-    <!-- review section ends -->
 
-    <!-- blogs section starts  -->
-
-    <section class="blogs" id="blogs">
-
-        <h1 class="heading"> our <span>blogs</span> </h1>
-
-        <div class="box-container">
-
-            <div class="box">
-                <img src="image/blog-1.jpg" alt="">
-                <div class="content">
-                    <div class="icons">
-                        <a href="#"> <i class="fas fa-user"></i> by user </a>
-                        <a href="#"> <i class="fas fa-calendar"></i> 1st may, 2022 </a>
-                    </div>
-                    <h3>fresh and organic vegitables and fruits</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, expedita.</p>
-                    <a href="#" class="btn">read more</a>
+    <!-- ========= APP DOWNLOAD BANNER ========= -->
+    <section class="app-banner">
+        <div class="app-banner-inner">
+            <div class="app-text">
+                <span class="app-tag">📱 Mobile App</span>
+                <h2>Order Faster with<br>the MUSH App</h2>
+                <p>Get exclusive app-only deals, track your delivery in real time, and reorder your favourites with one
+                    tap.</p>
+                <div class="app-buttons">
+                    <a href="#" class="app-btn">
+                        <i class="fab fa-google-play"></i>
+                        <div><small>Get it on</small><strong>Google Play</strong></div>
+                    </a>
+                    <a href="#" class="app-btn">
+                        <i class="fab fa-apple"></i>
+                        <div><small>Download on</small><strong>App Store</strong></div>
+                    </a>
                 </div>
             </div>
-
-            <div class="box">
-                <img src="image/blog-2.jpg" alt="">
-                <div class="content">
-                    <div class="icons">
-                        <a href="#"> <i class="fas fa-user"></i> by user </a>
-                        <a href="#"> <i class="fas fa-calendar"></i> 1st may, 2022 </a>
+            <div class="app-visual">
+                <div class="phone-mockup">
+                    <div class="phone-screen">
+                        <div class="phone-header">
+                            <span>MUSH Market</span>
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div class="phone-hero">🥦🍊🥩🥛</div>
+                        <div class="phone-order">
+                            <div class="p-card">
+                                <span>🍊 Pixie Oranges</span>
+                                <strong>KSh 159</strong>
+                            </div>
+                            <div class="p-card">
+                                <span>🥩 Fresh Beef</span>
+                                <strong>KSh 350</strong>
+                            </div>
+                        </div>
+                        <div class="phone-btn">Checkout — KSh 509</div>
                     </div>
-                    <h3>fresh and organic vegitables and fruits</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, expedita.</p>
-                    <a href="#" class="btn">read more</a>
                 </div>
             </div>
-
-            <div class="box">
-                <img src="image/blog-3.jpg" alt="">
-                <div class="content">
-                    <div class="icons">
-                        <a href="#"> <i class="fas fa-user"></i> by user </a>
-                        <a href="#"> <i class="fas fa-calendar"></i> 1st may, 2022 </a>
-                    </div>
-                    <h3>fresh and organic vegitables and fruits</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, expedita.</p>
-                    <a href="#" class="btn">read more</a>
-                </div>
-            </div>
-
         </div>
-
     </section>
+    <!-- ========= END APP BANNER ========= -->
 
-    <!-- blogs section ends -->
 
-    <!-- footer section starts  -->
-
-    <section class="footer">
-
-        <div class="box-container">
-
-            <div class="box">
-                <h3> grocery <i class="fas fa-shopping-basket"></i> </h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam, saepe.</p>
-                <div class="share">
-                    <a target="_blank" href="#" class="fab fa-facebook-f"> </a>
-                    <a href="#" class="fab fa-twitter"></a>
-                    <a href="#" class="fab fa-instagram"></a>
-                    <a href="#" class="fab fa-linkedin"></a>
+    <!-- ========= FOOTER ========= -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <div class="logo-icon">🥦</div>
+                    <span class="logo-text">MUSH<span class="logo-accent">Market</span></span>
+                </a>
+                <p>Nairobi's freshest online grocery marketplace. Farm-to-doorstep in under 45 minutes.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
                 </div>
             </div>
-
-            <div class="box">
-                <h3>contact info</h3>
-                <a href="#" class="links"> <i class="fas fa-phone"></i> +254740478651 </a>
-                <a href="#" class="links"> <i class="fas fa-envelope"></i> drewodongo470@gmail.com </a>
-                <a href="#" class="links"> <i class="fas fa-map-marker-alt"></i> Nairobi, Kenya </a>
+            <div class="footer-links-group">
+                <h4>Quick Links</h4>
+                <a href="#hero">Home</a>
+                <a href="#categories">Categories</a>
+                <a href="#products">Products</a>
+                <a href="#flash">Flash Deals</a>
+                <a href="#reviews">Reviews</a>
             </div>
-
-            <div class="box">
-                <h3>quick links</h3>
-                <a href="#" class="links"> <i class="fas fa-arrow-right"></i> home </a>
-                <a href="#" class="links"> <i class="fas fa-arrow-right"></i> features </a>
-                <a href="#" class="links"> <i class="fas fa-arrow-right"></i> products </a>
-                <a href="#" class="links"> <i class="fas fa-arrow-right"></i> categories </a>
-                <a href="#" class="links"> <i class="fas fa-arrow-right"></i> review </a>
-                <a href="#" class="links"> <i class="fas fa-arrow-right"></i> blogs </a>
+            <div class="footer-links-group">
+                <h4>Categories</h4>
+                <a href="#" onclick="filterCategory('fruits',null)">Fresh Fruits</a>
+                <a href="#" onclick="filterCategory('vegetables',null)">Vegetables</a>
+                <a href="#" onclick="filterCategory('meat',null)">Meat & Poultry</a>
+                <a href="#" onclick="filterCategory('dairy',null)">Dairy Products</a>
             </div>
-
-            <div class="box">
-                <h3>newsletter</h3>
-                <p>subscribe for latest updates</p>
-                <input type="email" placeholder="your email" class="email">
-                <input type="submit" value="subscribe" class="btn">
-                <img src="image/payment.png" class="payment-img" alt="">
+            <div class="footer-contact">
+                <h4>Get in Touch</h4>
+                <a href="tel:+254740478651"><i class="fas fa-phone"></i> +254 740 478 651</a>
+                <a href="mailto:drewodongo470@gmail.com"><i class="fas fa-envelope"></i> drewodongo470@gmail.com</a>
+                <a href="#"><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</a>
+                <div class="newsletter">
+                    <h5>Newsletter</h5>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="your@email.com">
+                        <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
             </div>
-
         </div>
-
-        <div class="credit"> created by <span> Andrew Odongo </span> | all rights reserved </div>
-
-    </section>
-
-    <!-- footer section ends -->
-
-
-
-
-
-
-
+        <div class="footer-bottom">
+            <p>© 2025 <strong>MUSH Market</strong> — Created with ❤️ by <span>Andrew Odongo</span>. All rights reserved.
+            </p>
+            <div class="payment-badges">
+                <span>M-PESA</span>
+                <span>VISA</span>
+                <span>MASTERCARD</span>
+            </div>
+        </div>
+    </footer>
+    <!-- ========= END FOOTER ========= -->
 
 
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
 
-
-
-
-
-
-    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-
-    <!-- custom js file link  -->
+    <!-- Custom JS -->
     <script src="js/script.js"></script>
 
 </body>
