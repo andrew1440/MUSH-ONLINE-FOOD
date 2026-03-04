@@ -30,7 +30,7 @@ app.get('/api/products', (req, res) => {
     });
 });
 
-// Search products endpoint
+// API endpoint to search products
 app.get('/api/search', (req, res) => {
     const query = req.query.q;
     if (!query) {
@@ -39,6 +39,17 @@ app.get('/api/search', (req, res) => {
     db.all("SELECT * FROM products WHERE name LIKE ? OR description LIKE ?", [`%${query}%`, `%${query}%`], (err, rows) => {
         if (err) {
             return res.status(500).json({ message: 'Error searching products' });
+        }
+        res.json(rows);
+    });
+});
+
+// API endpoint to get products by category
+app.get('/api/products/category/:category', (req, res) => {
+    const category = req.params.category;
+    db.all("SELECT * FROM products WHERE category = ?", [category], (err, rows) => {
+        if (err) {
+            return res.status(500).json({ message: 'Error fetching products by category' });
         }
         res.json(rows);
     });
@@ -124,6 +135,26 @@ app.get('/api/auth', (req, res) => {
     } else {
         res.json({ authenticated: false });
     }
+});
+
+// User order history endpoint
+app.get('/api/orders', (req, res) => {
+    if (!req.session.userId) {
+        return res.status(401).json({ message: 'Not authenticated' });
+    }
+
+    db.all(`
+        SELECT o.*, GROUP_CONCAT(p.name || ' (x' || oi.quantity || ')') as items
+        FROM orders o
+        JOIN order_items oi ON o.id = oi.order_id
+        JOIN products p ON oi.product_id = p.id
+        WHERE o.user_id = ?
+        GROUP BY o.id
+        ORDER BY o.created_at DESC
+    `, [req.session.userId], (err, rows) => {
+        if (err) return res.status(500).json({ message: 'Error fetching orders' });
+        res.json(rows);
+    });
 });
 
 // Get user's cart

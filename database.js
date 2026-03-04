@@ -79,7 +79,9 @@ function seedProducts() {
         ['Fresh Potato', 'KSh 30', 'image/product-5.png', 'Baby Potatoes (appx. 20 pieces) per Kg', 'vegetables'],
         ['Fresh Avocado', 'KSh 29', 'image/product-6.png', 'Save 26% Original price KSh39', 'fruits'],
         ['Fresh Carrot', 'KSh 50', 'image/product-7.png', 'Carrots (appx. 10 pieces) per Kg', 'vegetables'],
-        ['Green Lemon', 'KSh 119', 'image/product-8.png', 'green lemon', 'fruits']
+        ['Green Lemon', 'KSh 119', 'image/product-8.png', 'green lemon', 'fruits'],
+        ['Fresh Milk', 'KSh 65', 'image/cat-3.png', '1L Fresh Milk', 'dairy'],
+        ['Cheddar Cheese', 'KSh 450', 'image/cat-3.png', '250g Block Cheddar', 'dairy']
     ];
 
     db.get("SELECT COUNT(*) as count FROM products", (err, row) => {
